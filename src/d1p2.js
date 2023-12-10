@@ -16,9 +16,8 @@ const content = fs.readFileSync('./inputs/d1p2', 'utf8').split('\n').filter(x =>
 const numbers = content.map((line, idx) => {
   const nms = []
   for (let i = 0; i < line.length; i++) {
-    if (!isNaN(parseInt(line[i]))) {
-      nms.push(line[i])
-      ++i;
+    if (!isNaN(+line[i])) {
+      nms.push(+line[i])
     }
     Object.keys(nums).forEach(key => {
       const va = line.substr(i, key.length)
@@ -30,7 +29,6 @@ const numbers = content.map((line, idx) => {
   }
 
   const [a, b] = [nms[0], nms[nms.length - 1]]
-  console.log(idx, nms, a.toString(), b.toString())
   return a.toString() + b.toString()
 })
 const res = numbers.reduce((acc, i) => acc + parseInt(i), 0)
